@@ -1,0 +1,31 @@
+<div id="title">
+  Kursy walut
+</div>
+<div id="container">
+  <div *ngIf="information else noDataInfo">
+    <div id="date">
+      Data publikacji: {{information?.effectiveDate}}
+    </div>
+    <table id="scores" *ngIf="information && information?.rates?.length>0">
+      <thead>
+      <tr>
+        <th>Waluta</th>
+        <th>Kod waluty</th>
+        <th>Przeliczony kurs sredni</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let rate of information.rates">
+      <tr>
+        <td>{{rate?.currency}}</td>
+        <td>{{rate?.code}}</td>
+        <td>{{rate?.mid}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<ng-template #noDataInfo>
+  <div id="error">
+    <p>Brak danych w bazie danych</p>
+  </div>
+</ng-template>
